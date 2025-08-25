@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg text-text font-inter antialiased overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-8 py-4 rounded-2xl font-semibold transition-all duration-300 cursor-pointer overflow-hidden relative transform hover:-translate-y-1;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    z-index: -1;
+  }
+  
+  .btn:hover::before {
+    @apply opacity-100;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, 
+      rgba(99, 102, 241, 0.8) 0%, 
+      rgba(147, 51, 234, 0.8) 100%);
+    @apply text-white border border-white/20;
+    box-shadow: 
+      0 8px 32px rgba(99, 102, 241, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(135deg, 
+      rgba(99, 102, 241, 0.9) 0%, 
+      rgba(147, 51, 234, 0.9) 100%);
+    box-shadow: 
+      0 12px 40px rgba(99, 102, 241, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-outline {
+    background: rgba(255, 255, 255, 0.05);
+    @apply text-text border border-white/20;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  
+  .btn-outline:hover {
+    background: rgba(99, 102, 241, 0.1);
+    @apply border-primary/50;
+    box-shadow: 
+      0 8px 32px rgba(99, 102, 241, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Additional glassmorphism button variants */
+  .btn-glass {
+    background: rgba(255, 255, 255, 0.1);
+    @apply text-text border border-white/20;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    @apply border-white/30;
+    transform: translateY(-2px);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  
+  .btn-frosted {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.1) 0%, 
+      rgba(255, 255, 255, 0.05) 100%);
+    @apply text-text border border-white/10;
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+  }
+  
+  .btn-frosted:hover {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.15) 0%, 
+      rgba(255, 255, 255, 0.08) 100%);
+    @apply border-white/20;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply w-full p-4 bg-bg-card border border-white/10 rounded-lg text-text font-sans transition-all duration-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/50;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .form-input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 0 0 2px rgba(99, 102, 241, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Enhanced particle animation keyframes */
+@keyframes floatUpParticle {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(var(--drift, 0px)) rotate(180deg) scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* Additional particle variants for different effects */
+@keyframes floatUpSpiral {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-25vh) translateX(10px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-50vh) translateX(-10px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-75vh) translateX(10px) rotate(270deg);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(0px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes floatUpZigzag {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-20vh) translateX(15px);
+  }
+  40% {
+    transform: translateY(-40vh) translateX(-15px);
+  }
+  60% {
+    transform: translateY(-60vh) translateX(15px);
+  }
+  80% {
+    transform: translateY(-80vh) translateX(-15px);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-110vh) translateX(0px);
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  #particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle, var(--color-start), var(--color-end));
+    box-shadow: 0 0 8px var(--color-start), 0 0 12px var(--color-start);
+    animation-duration: var(--duration);
+    animation-fill-mode: forwards;
+  }
+
+  .star-shape {
+    border-radius: 0;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  }
+
+  .diamond-shape {
+    border-radius: 0;
+    transform: rotate(45deg);
+  }
+
+  .shooting-star {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+    filter: drop-shadow(0 0 6px white);
+    animation-name: shootingStar;
+    animation-timing-function: linear;
+  }
+}
